@@ -1,12 +1,12 @@
 <!--
  * @Author: smile
  * @Date: 2023-06-30 15:35:47
- * @LastEditors: smile alchemist_clb@163.com
- * @LastEditTime: 2023-07-03 14:36:37
+ * @LastEditors: smile-e3 2278215957@qq.com
+ * @LastEditTime: 2023-07-04 11:23:09
  * @FilePath: \i3wm-themes\key-bind.md
  * @Description: 快捷键绑定
 -->
-# 快捷键映射
+# i3wm快捷键映射
 
 ```shell
 $mod=Win键
@@ -26,3 +26,9 @@ $mod=Win键
 |$mod+Shift+1/2/3/...|切换对应的窗口到对应的桌面空间|
 |$mod+Shift+c|重新加载配置文件|
 |$mod+Shift+r|重启i3桌面|
+
+# kitty terminal快捷键映射
+|快捷键| 动作 |
+|-|-|
+|Ctrl+Shift+Tab|开启新标签页|
+|Ctrl+Shift+Enter|默认分屏|

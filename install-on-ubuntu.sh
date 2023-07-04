@@ -2,8 +2,8 @@
 ###
  # @Author: smile alchemist_clb@163.com
  # @Date: 2023-06-30 14:46:57
- # @LastEditors: smile alchemist_clb@163.com
- # @LastEditTime: 2023-07-03 16:09:32
+ # @LastEditors: smile-e3 2278215957@qq.com
+ # @LastEditTime: 2023-07-04 11:36:44
  # @FilePath: \i3wm-themes\install-on-ubuntu.sh
  # @Description: auto i3wm
 ###
@@ -34,6 +34,8 @@ install_pkgs(){
     sudo apt install feh -y
     # 安装net网络工具
     sudo apt install net-tools -y
+    # 安装neovim编辑工具
+    sudo apt install neovim -y
     # 安装相关依赖
     sudo apt install i3 meson ninja-build cmake cmake-data pkg-config git make\
      autoconf automake flex bison check rofi-dev libpango1.0-dev libxkbcommon-dev \
