@@ -37,7 +37,7 @@ install_pkgs(){
     # 安装neovim编辑工具
     sudo apt install neovim -y
     # 安装相关依赖
-    sudo apt install i3 meson ninja-build cmake cmake-data pkg-config git make\
+    sudo apt install meson ninja-build cmake cmake-data pkg-config git make\
      autoconf automake flex bison check rofi-dev libpango1.0-dev libxkbcommon-dev \
      libgdk-pixbuf-2.0-dev libxcb-util-dev libxkbcommon-x11-dev libxcb-icccm4-dev libxcb-cursor-dev \
      libstartup-notification0-dev -y
@@ -104,6 +104,20 @@ copy_configs(){
     cp -r ./config/* "$config_directory"
 }
 
+# 安装i3-gaps
+install_i3_gaps(){
+    cd ~
+    sudo apt install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
+    libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev \
+    libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev \
+    libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake \
+    libxcb-shape0-dev libxcb-xrm-dev
+    git clone https://github.com/Airblader/i3 i3-gaps
+    cd i3-gaps && mkdir -p build && cd build
+    meson --prefix /usr/local && ninja
+    sudo ninja install
+}
+
 cmd=(dialog --clear --separate-output --checklist "Select (with space) what script should do.\\nChecked options are required for proper installation, do not uncheck them if you do not know what you are doing." 26 86 16)
 options=(1 "System update" on
          2 "Install basic packages" on
@@ -115,6 +129,7 @@ options=(1 "System update" on
          8 "Copy fonts" on
          9 "Copy other configs (gtk theme, wallpaper, vsc configs, zsh configs)" on
          10 "Install package from file" on
+         11 "Install i3-gaps" on
         )
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 
@@ -133,5 +148,6 @@ do
         8) copy_fonts;;
         9) copy_other_configs;;
         10) install_packages_from_file;;
+        11) install_i3_gaps;;
     esac
 done
