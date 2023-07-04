@@ -3,7 +3,7 @@
  # @Author: smile alchemist_clb@163.com
  # @Date: 2023-06-30 14:46:57
  # @LastEditors: smile-e3 2278215957@qq.com
- # @LastEditTime: 2023-07-04 11:36:44
+ # @LastEditTime: 2023-07-04 14:30:57
  # @FilePath: \i3wm-themes\install-on-ubuntu.sh
  # @Description: auto i3wm
 ###
@@ -35,7 +35,7 @@ install_pkgs(){
     # 安装net网络工具
     sudo apt install net-tools -y
     # 安装neovim编辑工具
-    sudo apt install neovim -y
+    # sudo apt install neovim -y
     # 安装相关依赖
     sudo apt install meson ninja-build cmake cmake-data pkg-config git make\
      autoconf automake flex bison check rofi-dev libpango1.0-dev libxkbcommon-dev \
@@ -106,6 +106,7 @@ copy_configs(){
 
 # 安装i3-gaps
 install_i3_gaps(){
+    echo -e "${green}[*] Install i3-gaps tool.${no_color}"
     cd ~
     sudo apt install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
     libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev \
@@ -116,6 +117,15 @@ install_i3_gaps(){
     cd i3-gaps && mkdir -p build && cd build
     meson --prefix /usr/local && ninja
     sudo ninja install
+}
+
+# 安装相关开发相关编辑器
+install_code_tools(){
+    echo -e "${green}[*] Install neovim.${no_color}"
+    sudo apt install libfuse2
+    wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage && sudo mv nvim.appimage /usr/bin/nvim
+    sudo chmod 777 /usr/bin/nvim
+    nvim +PackerSync
 }
 
 cmd=(dialog --clear --separate-output --checklist "Select (with space) what script should do.\\nChecked options are required for proper installation, do not uncheck them if you do not know what you are doing." 26 86 16)
@@ -130,6 +140,7 @@ options=(1 "System update" on
          9 "Copy other configs (gtk theme, wallpaper, vsc configs, zsh configs)" on
          10 "Install package from file" on
          11 "Install i3-gaps" on
+         12 "Install code tools" on
         )
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 
@@ -149,5 +160,6 @@ do
         9) copy_other_configs;;
         10) install_packages_from_file;;
         11) install_i3_gaps;;
+        12) install_code_tools;;
     esac
 done

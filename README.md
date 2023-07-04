@@ -2,8 +2,9 @@
 > ubuntu i3wm config &amp; auto build
 
 ## TODO
-- [ ] Kitty终端美化
+- [x] Kitty终端美化
 - [ ] i3wm进一步美化
+- [ ] neovim将ASTRONVIM替换为自己的（后期再说）
 
 ## 0x00.Information
 - os: ubuntu 22.04
