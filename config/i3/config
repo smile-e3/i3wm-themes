@@ -11,6 +11,10 @@
 
 set $mod Mod4
 
+gaps inner 8 # 边距
+default_border none #关闭窗口边框
+default_floating_border none # 关闭浮动窗口边框
+
 # set wallpaper with fed
 exec_always feh --no-fehbg --bg-scale $HOME/Pictures/wallpapers/background.png
 
